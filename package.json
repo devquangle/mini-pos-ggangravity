@@ -1,0 +1,26 @@
+{
+  "name": "mini-pos-ggangravity",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mini POS bán hàng và trừ kho với AI, json-server, Vitest và Playwright",
+  "main": "src/js/app.js",
+  "scripts": {
+    "start": "concurrently \"npm run api\" \"npm run dev\"",
+    "dev": "vite --port 5173",
+    "api": "json-server --watch db.json --port 3000",
+    "reset-db": "node scripts/reset-db.mjs",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "install:browsers": "playwright install --with-deps"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "concurrently": "^8.2.2",
+    "json-server": "^0.17.4",
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0"
+  }
+}

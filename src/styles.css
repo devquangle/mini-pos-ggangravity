@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-color: #2563eb;
+  --teal-color: #0f766e;
+  --bg-color: #f1f5f9;
+  --border-color: #e2e8f0;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+/* Header Banner */
+.header-banner {
+  background: linear-gradient(135deg, #1d4ed8 0%, #115e59 100%) !important;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(29, 78, 216, 0.15);
+}
+
+.banner-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.banner-api-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Cards */
+.card {
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.card-header {
+  padding: 1.25rem 1.5rem !important;
+}
+
+.card-header .card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* Buttons */
+#btn-reload {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+#btn-reload:hover {
+  background-color: #dbeafe;
+}
+
+/* Table styling */
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--text-muted);
+  border-bottom: 1.5px solid var(--border-color) !important;
+  padding: 1rem 1.25rem !important;
+  background-color: #fafafa;
+}
+
+.table td {
+  padding: 1.1rem 1.25rem !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-dark);
+}
+
+/* Stock Badges */
+.stock-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0 !important;
+}
+
+.bg-success-subtle {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+}
+
+.bg-danger-subtle {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+}
+
+/* Quantity input */
+input[type="number"] {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 80px !important;
+}
+
+input[type="number"]:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  outline: none;
+}
+
+/* Action button "Thêm vào giỏ" (teal/emerald) */
+.btn-add {
+  background-color: var(--teal-color) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-add:hover:not(:disabled) {
+  background-color: #115e59 !important;
+  transform: translateY(-0.5px);
+}
+
+.btn-add:disabled {
+  background-color: #cbd5e1 !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed;
+}
+
+/* Cart item blocks */
+.cart-item-card {
+  border-color: var(--border-color) !important;
+  border-radius: 12px !important;
+  transition: transform 0.15s ease;
+}
+
+.cart-item-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* Empty text */
+.empty-text {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Alert Message Container */
+#message-container {
+  border-radius: 10px;
+  font-weight: 500;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.alert-success {
+  background-color: #ecfdf5 !important;
+  color: #047857 !important;
+}
+
+.alert-danger {
+  background-color: #fff1f2 !important;
+  color: #be123c !important;
+}
+
+/* Total Price & Checkout */
+#cart-total {
+  font-size: 1.5rem !important;
+  color: var(--primary-color) !important;
+}
+
+#btn-checkout {
+  background-color: var(--primary-color) !important;
+  border: none !important;
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  transition: all 0.2s ease;
+}
+
+#btn-checkout:hover:not(:disabled) {
+  background-color: #1d4ed8 !important;
+  transform: translateY(-0.5px);
+}
+
+#btn-checkout:disabled {
+  background-color: #cbd5e1 !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed;
+}

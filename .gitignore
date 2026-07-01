@@ -1,0 +1,27 @@
+# Thư mục chứa các thư viện cài đặt
+node_modules/
+
+# Cơ sở dữ liệu tạm thời (đã có db.seed.json làm dữ liệu gốc)
+db.json
+
+# Báo cáo và kết quả chạy test Playwright E2E
+playwright-report/
+test-results/
+playwright/.local-browsers/
+
+# Logs chạy lệnh npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Các tệp tin cấu hình môi trường bảo mật
+.env
+.env.local
+
+# Các cấu hình của IDE/Editor
+.vscode/
+.idea/
+*.suo
+*.swp
+.DS_Store
+Thumbs.db
