@@ -36,20 +36,40 @@ const btnConfirmDelete = document.getElementById('btn-confirm-delete');
 
 
 /**
- * Hiển thị thông báo thành công hoặc lỗi lên giao diện
+ * Hiển thị thông báo thành công hoặc lỗi lên giao diện bằng SweetAlert2
  * @param {string} text - Nội dung thông báo
  * @param {'success'|'danger'} type - Loại thông báo (màu xanh hoặc màu đỏ)
  */
 function showMessage(text, type) {
-  messageContainer.className = `alert alert-${type}`;
-  messageContainer.textContent = text;
-  messageContainer.classList.remove('d-none');
+  if (typeof Swal !== 'undefined') {
+    Swal.fire({
+      text: text,
+      icon: type === 'danger' ? 'error' : 'success',
+      confirmButtonText: 'Đồng ý',
+      timer: 3000,
+      timerProgressBar: true,
+      customClass: {
+        popup: 'rounded-4 border-0 shadow'
+      },
+      didOpen: (popup) => {
+        popup.setAttribute('data-testid', 'message');
+      }
+    });
+  } else {
+    // Dự phòng nếu không tải được thư viện SweetAlert2
+    messageContainer.className = `alert alert-${type}`;
+    messageContainer.textContent = text;
+    messageContainer.classList.remove('d-none');
+  }
 }
 
 /**
  * Ẩn thông báo hiện tại
  */
 function hideMessage() {
+  if (typeof Swal !== 'undefined') {
+    Swal.close();
+  }
   messageContainer.classList.add('d-none');
 }
 
