@@ -36,7 +36,7 @@ Hiển thị cảnh báo lỗi khi số lượng chọn mua vượt quá lượn
 ![04. Vượt quá tồn kho](src/images/04_invalid_qty_over_stock.png)
 
 #### 5. Thanh toán thành công thì tồn kho giảm
-Thanh toán thành công và cập nhật trừ tồn kho tương ứng của sản phẩm trên server (ví dụ: Trà sữa giảm từ 10 xuống còn 7):
+Thanh toán thành công và cập nhật trừ tồn kho tương ứng của sản phẩm trên server (ví dụ: Cà phê giảm từ 8 xuống còn 4):
 ![05. Thanh toán thành công](src/images/05_checkout_success.png)
 
 #### 6. Thanh toán xong thì giỏ hàng rỗng

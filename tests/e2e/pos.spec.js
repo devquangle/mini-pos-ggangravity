@@ -73,9 +73,9 @@ test.describe('Kiểm thử giao diện Mini POS (E2E)', () => {
 
   // 5. Kiểm tra thanh toán thành công và trừ tồn kho
   test('Thanh toán thành công thì tồn kho giảm', async ({ page }) => {
-    // Mua 3 Trà sữa
-    await page.getByTestId('product-quantity-1').fill('3');
-    await page.getByTestId('add-to-cart-1').click();
+    // Mua 4 Cà phê (Cà phê tồn kho ban đầu là 8)
+    await page.getByTestId('product-quantity-3').fill('4');
+    await page.getByTestId('add-to-cart-3').click();
 
     // Click nút Thanh toán
     await page.getByTestId('checkout-button').click();
@@ -83,8 +83,8 @@ test.describe('Kiểm thử giao diện Mini POS (E2E)', () => {
     // Kiểm tra tin nhắn thanh toán thành công
     await expect(page.getByTestId('message')).toContainText('Thanh toán thành công');
 
-    // Kiểm tra tồn kho của Trà sữa giảm từ 10 xuống còn 7
-    await expect(page.getByTestId('product-stock-1')).toHaveText('7');
+    // Kiểm tra tồn kho của Cà phê giảm từ 8 xuống còn 4
+    await expect(page.getByTestId('product-stock-3')).toHaveText('4');
   });
 
   // 6. Kiểm tra giỏ hàng được làm rỗng sau khi thanh toán thành công
