@@ -210,3 +210,47 @@ input[type="number"]:focus {
   color: #94a3b8 !important;
   cursor: not-allowed;
 }
+
+/* Force SweetAlert2 Popup to display beautifully and clearly */
+.swal2-popup {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.swal2-html-container {
+  color: #334155 !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+}
+
+.swal2-confirm {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 1.5rem !important;
+}
+
+.swal2-timer-progress-bar {
+  background: var(--primary-gradient) !important;
+}
+
+/* Force SweetAlert2 Icons to display instantly and fully without draw animations */
+.swal2-icon {
+  animation: none !important;
+}
+.swal2-icon * {
+  animation: none !important;
+  transition: none !important;
+}
+.swal2-success-line-tip, 
+.swal2-success-line-long, 
+.swal2-success-ring, 
+.swal2-success-fix, 
+.swal2-x-mark-line-left, 
+.swal2-x-mark-line-right {
+  animation: none !important;
+  opacity: 1 !important;
+}

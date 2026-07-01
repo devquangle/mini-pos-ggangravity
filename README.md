@@ -15,7 +15,37 @@ Dưới đây là hình ảnh giao diện thực tế của ứng dụng Mini PO
 
 ![Giao diện Mini POS bán hàng và trừ kho](src/images/ui_preview.png)
 
-*(Lưu ý: Nếu bạn tải dự án về, vui lòng chụp lại màn hình giao diện của bạn, lưu với tên `ui_preview.png` và đặt vào thư mục `src/images/` để hiển thị chính xác ảnh preview của riêng bạn trên GitHub).*
+### 📸 Hình ảnh giao diện theo từng chức năng kiểm thử (E2E Screenshots)
+
+Dưới đây là hình ảnh chụp thực tế màn hình (Screenshots) của trình duyệt tương ứng với **7 chức năng nghiệp vụ** của ứng dụng được trích xuất từ báo cáo kiểm thử tự động Playwright:
+
+#### 1. Hiển thị danh sách sản phẩm
+Kiểm tra danh sách tải về từ API (Mã, tên sản phẩm, đơn giá, tồn kho đầy đủ):
+![01. Hiển thị danh sách sản phẩm](src/images/01_product_list.png)
+
+#### 2. Thêm sản phẩm vào giỏ hàng
+Thêm sản phẩm thành công, hiển thị ở giỏ hàng dạng thẻ và tự động cập nhật tổng tiền:
+![02. Thêm sản phẩm vào giỏ](src/images/02_add_to_cart.png)
+
+#### 3. Không cho nhập số lượng bằng 0
+Hiển thị hộp thoại báo lỗi SweetAlert2 khi người dùng cố tình thêm số lượng mua bằng 0:
+![03. Số lượng bằng 0](src/images/03_invalid_qty_zero.png)
+
+#### 4. Không cho mua vượt tồn kho
+Hiển thị cảnh báo lỗi khi số lượng chọn mua vượt quá lượng tồn kho thực tế của sản phẩm:
+![04. Vượt quá tồn kho](src/images/04_invalid_qty_over_stock.png)
+
+#### 5. Thanh toán thành công thì tồn kho giảm
+Thanh toán thành công và cập nhật trừ tồn kho tương ứng của sản phẩm trên server (ví dụ: Trà sữa giảm từ 10 xuống còn 7):
+![05. Thanh toán thành công](src/images/05_checkout_success.png)
+
+#### 6. Thanh toán xong thì giỏ hàng rỗng
+Sau khi thanh toán thành công, giỏ hàng tự động làm sạch và hiển thị thông báo "Giỏ hàng đang trống":
+![06. Giỏ hàng rỗng sau thanh toán](src/images/06_checkout_empty_cart.png)
+
+#### 7. Giỏ hàng rỗng thì không cho thanh toán
+Ngăn chặn hành vi thanh toán và hiển thị thông báo lỗi khi giỏ hàng chưa có sản phẩm:
+![07. Chặn thanh toán giỏ rỗng](src/images/07_checkout_error_empty.png)
 
 ---
 
@@ -142,6 +172,12 @@ Bộ E2E Test tự động khởi chạy trình duyệt ẩn, mô phỏng các t
   ```bash
   npm run test:e2e:ui
   ```
+- **Xem báo cáo HTML & Hình ảnh chụp giao diện từng chức năng (Playwright HTML Report):**
+  Sau khi chạy kiểm thử E2E xong, Playwright đã được cấu hình tự động chụp lại ảnh màn hình kết quả cho từng kịch bản chức năng và tích hợp thẳng vào báo cáo HTML. Để khởi động máy chủ xem báo cáo này, bạn chạy lệnh:
+  ```bash
+  npx playwright show-report
+  ```
+  *Tệp báo cáo lưu tại [playwright-report/index.html](file:///d:/TESTER_CICD_CP26SCM02/mini-pos-ggangravity/playwright-report/index.html). Tại đây bạn sẽ thấy danh sách 7 test case, nhấn vào từng test case để xem hình ảnh chụp giao diện thực tế (Screenshots) của chức năng đó.*
 
 ---
 

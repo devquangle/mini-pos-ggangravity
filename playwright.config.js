@@ -10,6 +10,7 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',
+    screenshot: 'on', // Tự động chụp ảnh màn hình cho từng chức năng sau khi test xong
   },
   webServer: [
     {

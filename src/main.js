@@ -48,6 +48,14 @@ function showMessage(text, type) {
       confirmButtonText: 'Đồng ý',
       timer: 3000,
       timerProgressBar: true,
+      showClass: {
+        popup: '', // Tắt animation để Playwright chụp ảnh màn hình không bị mờ/trong suốt
+        backdrop: ''
+      },
+      hideClass: {
+        popup: '',
+        backdrop: ''
+      },
       customClass: {
         popup: 'rounded-4 border-0 shadow'
       },
