@@ -91,7 +91,29 @@
     </div>
   </div>
 
+  <!-- Bootstrap 5 Confirm Delete Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 14px;">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-danger" id="deleteConfirmModalLabel">Xác nhận xóa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          Bạn có chắc chắn muốn xóa sản phẩm <strong id="delete-item-name"></strong> khỏi giỏ hàng?
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light fw-bold" data-bs-dismiss="modal" style="border-radius: 8px;">Hủy</button>
+          <button type="button" class="btn btn-danger fw-bold" id="btn-confirm-delete" style="border-radius: 8px;">Xóa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Main JavaScript App -->
   <script type="module" src="/src/main.js"></script>
 </body>
+
 </html>

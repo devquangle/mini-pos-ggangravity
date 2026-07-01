@@ -3,7 +3,8 @@ import {
   validateQuantity,
   calculateLineTotal,
   calculateCartTotal,
-  updateStockAfterCheckout
+  updateStockAfterCheckout,
+  removeItemFromCart
 } from '../../src/services/cartService.js';
 
 describe('Kiểm thử logic nghiệp vụ Giỏ hàng (cartService)', () => {
@@ -86,6 +87,27 @@ describe('Kiểm thử logic nghiệp vụ Giỏ hàng (cartService)', () => {
       // Bánh mì không mua: tồn kho giữ nguyên là 5
       const bread = newProducts.find(p => p.id === '2');
       expect(bread.stock).toBe(5);
+    });
+  });
+
+  // 5. Kiểm thử hàm removeItemFromCart
+  describe('removeItemFromCart', () => {
+    test('xóa sản phẩm tồn tại khỏi giỏ hàng', () => {
+      const cartItems = [
+        { id: '1', name: 'Trà sữa', price: 25000, quantity: 2 },
+        { id: '2', name: 'Bánh mì', price: 15000, quantity: 1 }
+      ];
+      const newCart = removeItemFromCart(cartItems, '1');
+      expect(newCart).toHaveLength(1);
+      expect(newCart[0].id).toBe('2');
+    });
+
+    test('xóa sản phẩm không có trong giỏ hàng thì giữ nguyên giỏ', () => {
+      const cartItems = [
+        { id: '1', name: 'Trà sữa', price: 25000, quantity: 2 }
+      ];
+      const newCart = removeItemFromCart(cartItems, '999');
+      expect(newCart).toHaveLength(1);
     });
   });
 

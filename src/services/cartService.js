@@ -98,3 +98,14 @@ export function addItemToCart(cartItems, product, quantity) {
     ];
   }
 }
+
+/**
+ * Xóa sản phẩm khỏi giỏ hàng
+ * @param {Array} cartItems - Giỏ hàng hiện tại
+ * @param {string|number} productId - ID sản phẩm muốn xóa
+ * @returns {Array} Giỏ hàng mới sau khi xóa
+ */
+export function removeItemFromCart(cartItems, productId) {
+  return cartItems.filter(item => item.id !== productId);
+}
+

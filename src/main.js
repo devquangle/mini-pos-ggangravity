@@ -3,7 +3,8 @@ import {
   calculateLineTotal,
   calculateCartTotal,
   updateStockAfterCheckout,
-  addItemToCart
+  addItemToCart,
+  removeItemFromCart
 } from './services/cartService.js';
 
 import {
@@ -26,6 +27,13 @@ const cartTotalEl = document.getElementById('cart-total');
 const btnCheckout = document.getElementById('btn-checkout');
 const btnReload = document.getElementById('btn-reload');
 const messageContainer = document.getElementById('message-container');
+
+// Biến lưu sản phẩm cần xóa và điều khiển Modal xác nhận xóa của Bootstrap 5
+let productToDeleteId = null;
+let deleteModal = null;
+const deleteItemNameEl = document.getElementById('delete-item-name');
+const btnConfirmDelete = document.getElementById('btn-confirm-delete');
+
 
 /**
  * Hiển thị thông báo thành công hoặc lỗi lên giao diện
@@ -121,13 +129,26 @@ function renderCart() {
     div.className = 'border rounded p-3 mb-2 bg-white shadow-sm cart-item-card';
     div.innerHTML = `
       <div class="d-flex justify-content-between align-items-center">
-        <span class="fw-bold text-dark">${item.name}</span>
-        <span class="fw-bold text-dark">${formatMoney(calculateLineTotal(item.price, item.quantity))}</span>
+        <div>
+          <span class="fw-bold text-dark">${item.name}</span>
+          <div class="text-muted small mt-1">${item.quantity} x ${formatMoney(item.price)}</div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="fw-bold text-dark">${formatMoney(calculateLineTotal(item.price, item.quantity))}</span>
+          <button 
+            class="btn btn-outline-danger btn-sm btn-delete-item py-1 px-2 fw-semibold" 
+            data-id="${item.id}" 
+            data-name="${item.name}"
+            data-testid="delete-item-${item.id}"
+          >
+            Xóa
+          </button>
+        </div>
       </div>
-      <div class="text-muted small mt-1">${item.quantity} x ${formatMoney(item.price)}</div>
     `;
     cartItemsEl.appendChild(div);
   });
+
 
   const total = calculateCartTotal(cartItems);
   cartTotalEl.textContent = formatMoney(total);
@@ -217,6 +238,39 @@ productListEl.addEventListener('click', (e) => {
   }
 });
 
+// Lắng nghe sự kiện click nút Xóa trên giỏ hàng (Event Delegation)
+cartItemsEl.addEventListener('click', (e) => {
+  const deleteBtn = e.target.closest('.btn-delete-item');
+  if (deleteBtn) {
+    productToDeleteId = deleteBtn.getAttribute('data-id');
+    const productName = deleteBtn.getAttribute('data-name');
+    deleteItemNameEl.textContent = productName;
+    
+    // Khởi tạo và hiển thị Modal nếu chưa khởi tạo
+    if (!deleteModal && typeof bootstrap !== 'undefined') {
+      deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    }
+    if (deleteModal) {
+      deleteModal.show();
+    }
+  }
+});
+
+// Lắng nghe sự kiện xác nhận xóa từ Modal
+btnConfirmDelete.addEventListener('click', () => {
+  if (productToDeleteId) {
+    cartItems = removeItemFromCart(cartItems, productToDeleteId);
+    renderCart();
+    
+    if (deleteModal) {
+      deleteModal.hide();
+    }
+    
+    productToDeleteId = null;
+    showMessage('Đã xóa sản phẩm khỏi giỏ hàng', 'success');
+  }
+});
+
 // Lắng nghe sự kiện nút thanh toán
 btnCheckout.addEventListener('click', handleCheckout);
 
@@ -227,4 +281,10 @@ btnReload.addEventListener('click', () => {
 });
 
 // Chạy lần đầu khi tải trang
-window.addEventListener('DOMContentLoaded', loadProducts);
+window.addEventListener('DOMContentLoaded', () => {
+  loadProducts();
+  if (typeof bootstrap !== 'undefined') {
+    deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+  }
+});
+
