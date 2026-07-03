@@ -1,6 +1,6 @@
 # Mini POS - Bán Hàng & Trừ Kho (Automation Testing & CI/CD Demo)
 
-![Bootstrap](https://img.shields.io/badge/Bootstrap-v5.3.3-purple.svg)![Vite](https://img.shields.io/badge/Vite-v5.3.1-646cff.svg)![json-server](https://img.shields.io/badge/json--server-v0.17.4-blue.svg)![SweetAlert2](https://img.shields.io/badge/SweetAlert2-v11-ea4c89.svg)![Vitest](https://img.shields.io/badge/Vitest-v1.6.0-fcc72b.svg)![Playwright](https://img.shields.io/badge/Playwright-v1.45.0-2e3440.svg)![concurrently](https://img.shields.io/badge/concurrently-v8.2.2-5c5c5c.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-v5.3.3-purple.svg) &nbsp;&nbsp; ![Vite](https://img.shields.io/badge/Vite-v5.3.1-646cff.svg) &nbsp;&nbsp; ![json-server](https://img.shields.io/badge/json--server-v0.17.4-blue.svg) &nbsp;&nbsp; ![SweetAlert2](https://img.shields.io/badge/SweetAlert2-v11-ea4c89.svg) &nbsp;&nbsp; ![Vitest](https://img.shields.io/badge/Vitest-v1.6.0-fcc72b.svg) &nbsp;&nbsp; ![Playwright](https://img.shields.io/badge/Playwright-v1.45.0-2e3440.svg) &nbsp;&nbsp; ![concurrently](https://img.shields.io/badge/concurrently-v8.2.2-5c5c5c.svg)
 
 Dự án **Mini POS bán hàng và trừ kho** là một ứng dụng Web Single-Page Application (SPA) thu nhỏ được phát triển bằng **Bootstrap (v5.3.3)**, **Vite (v5.3.1)**, **json-server (v0.17.4)**, **SweetAlert2 (v11)**, **Vitest (v1.6.0)**, **Playwright (v1.45.0)** và **concurrently (v8.2.2)**. Ứng dụng được thiết kế chuyên biệt làm mẫu thực hành cho môn học **Kiểm thử tự động (Test Automation)** kết hợp quy trình tích hợp liên tục **CI/CD**.
 
