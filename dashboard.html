@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard báo cáo bán hàng</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- CSS dùng chung của project -->
+  <link rel="stylesheet" href="./src/styles.css">
+  
+  <!-- CSS bổ sung để giao diện thẻ thống kê đẹp hơn (giống hình mẫu) -->
+  <style>
+    body {
+      background-color: #f4f6f8;
+    }
+    .card-stat {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background-color: #ffffff;
+    }
+    .card-title-stat {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-bottom: 0.5rem;
+    }
+    .card-value-stat {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #212529;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    
+    <!-- Phần Header của Dashboard -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <div class="text-primary fw-bold small text-uppercase mb-1 tracking-wider">Báo cáo Mini POS</div>
+        <h1 class="h2 fw-bold mb-1" data-testid="dashboard-title">Dashboard báo cáo bán hàng</h1>
+        <p class="text-muted small mb-0">Theo dõi doanh thu, đơn hàng, sản phẩm bán chạy và tồn kho hiện tại.</p>
+      </div>
+      <div>
+        <a href="index.html" class="btn btn-primary px-4 fw-medium shadow-sm">Quay về bán hàng</a>
+      </div>
+    </div>
+
+    <!-- Thông báo lỗi/thành công -->
+    <div id="dashboard-message" class="alert d-none mb-4" data-testid="dashboard-message"></div>
+
+    <!-- 4 Thẻ thống kê tổng quan (Cards) -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-3">
+        <div class="card card-stat h-100 p-3">
+          <div class="card-title-stat">Tổng doanh thu</div>
+          <div class="card-value-stat" id="total-revenue" data-testid="total-revenue">0 ₫</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-stat h-100 p-3">
+          <div class="card-title-stat">Tổng đơn hàng</div>
+          <div class="card-value-stat" id="total-orders" data-testid="total-orders">0</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-stat h-100 p-3">
+          <div class="card-title-stat">Sản phẩm đã bán</div>
+          <div class="card-value-stat" id="total-sold-quantity" data-testid="total-sold-quantity">0</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-stat h-100 p-3">
+          <div class="card-title-stat">Bán chạy nhất</div>
+          <div class="card-value-stat" id="best-selling-product" data-testid="best-selling-product">Chưa có</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Danh sách Sản phẩm sắp hết hàng -->
+    <div class="card card-stat mb-4">
+      <div class="card-body p-4">
+        <h5 class="fw-bold mb-1">Sản phẩm sắp hết hàng</h5>
+        <p class="text-muted small mb-3">Cảnh báo các sản phẩm có tồn kho nhỏ hơn hoặc bằng 5.</p>
+        <div class="row g-3" id="low-stock-list" data-testid="low-stock-list">
+          <!-- Script dashboard.js sẽ đổ dữ liệu HTML vào đây -->
+          <div class="text-muted small">Đang tải...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Biểu đồ hàng 1: Doanh thu theo ngày & Tồn kho hiện tại -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-6">
+        <div class="card card-stat h-100">
+          <div class="card-body p-4">
+            <h5 class="fw-bold mb-1">Doanh thu theo ngày</h5>
+            <p class="text-muted small mb-4">Gom doanh thu từ các đơn hàng theo ngày tạo đơn.</p>
+            <div>
+              <canvas id="revenue-chart" data-testid="revenue-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-stat h-100">
+          <div class="card-body p-4">
+            <h5 class="fw-bold mb-1">Tồn kho hiện tại</h5>
+            <p class="text-muted small mb-4">Số lượng còn lại của từng sản phẩm.</p>
+            <div>
+              <canvas id="stock-chart" data-testid="stock-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Biểu đồ hàng 2: Số lượng bán theo sản phẩm -->
+    <div class="card card-stat mb-5">
+      <div class="card-body p-4">
+        <h5 class="fw-bold mb-1">Số lượng bán theo sản phẩm</h5>
+        <p class="text-muted small mb-4">Tổng quantity đã bán của từng sản phẩm.</p>
+        <div>
+          <canvas id="sold-quantity-chart" data-testid="sold-quantity-chart" height="80"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import thư viện Chart.js qua CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- File logic riêng của Dashboard (sẽ xử lý lấy data và vẽ biểu đồ) -->
+  <script type="module" src="./src/dashboard.js"></script>
+</body>
+</html>

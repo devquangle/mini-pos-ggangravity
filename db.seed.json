@@ -35,5 +35,79 @@
       "price": 12000,
       "stock": 12
     }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "customerName": "Khách lẻ",
+      "items": [
+        {
+          "productId": "1",
+          "code": "SP001",
+          "name": "Trà sữa",
+          "price": 25000,
+          "quantity": 2,
+          "lineTotal": 50000
+        },
+        {
+          "productId": "2",
+          "code": "SP002",
+          "name": "Bánh mì",
+          "price": 15000,
+          "quantity": 1,
+          "lineTotal": 15000
+        }
+      ],
+      "totalAmount": 65000,
+      "createdAt": "2026-07-06T10:15:30.000Z"
+    },
+    {
+      "id": "2",
+      "customerName": "Khách lẻ",
+      "items": [
+        {
+          "productId": "3",
+          "code": "SP003",
+          "name": "Cà phê",
+          "price": 20000,
+          "quantity": 3,
+          "lineTotal": 60000
+        },
+        {
+          "productId": "4",
+          "code": "SP004",
+          "name": "Nước suối",
+          "price": 10000,
+          "quantity": 5,
+          "lineTotal": 50000
+        }
+      ],
+      "totalAmount": 110000,
+      "createdAt": "2026-07-07T14:20:00.000Z"
+    },
+    {
+      "id": "3",
+      "customerName": "Khách lẻ",
+      "items": [
+        {
+          "productId": "1",
+          "code": "SP001",
+          "name": "Trà sữa",
+          "price": 25000,
+          "quantity": 1,
+          "lineTotal": 25000
+        },
+        {
+          "productId": "5",
+          "code": "SP005",
+          "name": "Mì ly",
+          "price": 12000,
+          "quantity": 4,
+          "lineTotal": 48000
+        }
+      ],
+      "totalAmount": 73000,
+      "createdAt": "2026-07-08T09:05:15.000Z"
+    }
   ]
 }

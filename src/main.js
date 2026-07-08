@@ -13,6 +13,11 @@ import {
 } from './services/productApi.js';
 
 import {
+  createOrder,
+  generateOrderId
+} from './services/orderApi.js';
+
+import {
   formatMoney
 } from './utils/formatMoney.js';
 
@@ -246,8 +251,31 @@ async function handleCheckout() {
       await updateProductStock(item.id, updatedProduct.stock);
     }
 
-    // 3. Thanh toán thành công: hiển thị thông báo, làm rỗng giỏ, tải lại sản phẩm
-    showMessage('Thanh toán thành công', 'success');
+    // 3. Tạo và lưu đơn hàng
+    const orderItems = cartItems.map(item => {
+      const product = products.find(p => p.id === item.id);
+      return {
+        productId: item.id,
+        code: product ? product.code : '',
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        lineTotal: calculateLineTotal(item.price, item.quantity)
+      };
+    });
+
+    const order = {
+      id: generateOrderId(),
+      customerName: 'Khách lẻ',
+      items: orderItems,
+      totalAmount: calculateCartTotal(cartItems),
+      createdAt: new Date().toISOString()
+    };
+
+    await createOrder(order);
+
+    // 4. Thanh toán thành công: hiển thị thông báo, làm rỗng giỏ, tải lại sản phẩm
+    showMessage('Thanh toán thành công và đã lưu đơn hàng', 'success');
     cartItems = [];
     renderCart();
     await loadProducts();

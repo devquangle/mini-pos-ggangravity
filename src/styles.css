@@ -254,3 +254,128 @@ input[type="number"]:focus {
   animation: none !important;
   opacity: 1 !important;
 }
+
+/* =========================================
+   DASHBOARD STYLES (Pure CSS)
+   ========================================= */
+
+/* Layout & Typography */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #1d4ed8;
+}
+
+/* Dashboard Grid cho 4 thẻ thống kê */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+/* Thẻ thống kê */
+.stat-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stat-title {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* Khu vực biểu đồ */
+.chart-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.chart-card-full {
+  grid-column: 1 / -1; /* Chiếm toàn bộ chiều ngang */
+}
+
+/* Danh sách sắp hết hàng */
+.low-stock-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.low-stock-item {
+  background-color: #fff3f4;
+  border: 1px solid #f8d7da;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.warning-text {
+  color: #dc3545;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+/* Responsive cơ bản */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .chart-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
